@@ -11,7 +11,7 @@ export default function NavBar() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom d-flex">
-      <h4>Disponibilidad</h4>
+      <h4>Calendario de Monitoreo</h4>
       <div className={`btn btn-${maasContext.editModeOn ? 'success': 'info'}`} onClick={handleClick}>
         {maasContext.editModeOn ? 'Guardar': 'Editar'}
       </div>

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MaasContext } from './../context/Context';
 import axios from 'axios';
-import DaySchedule from './Day';
+import DaySchedule from './DaySchedule';
 
 export default function Schedule() {
   const maasContext = useContext(MaasContext);
-  const [schedule, setSchedule] = useState()
+  const [schedule, setSchedule] = useState();
 
   useEffect(() => {
     if (!maasContext.service || !maasContext.week)

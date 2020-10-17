@@ -46,6 +46,7 @@ code {
 .date-range {
   margin-top: 0.5rem;
   font-size: small;
+  margin-bottom: 0;
 }
 
 #schedule {
@@ -60,5 +61,41 @@ code {
       background-color: antiquewhite;
     }
   }
+}
 
+.employee-list {
+  display: flex;
+  flex-direction: column;
+
+  .employee-row {
+    display: flex;
+
+    span {
+      font-size: 1rem;
+      border: 1px  solid gray;
+    }
+
+    .employee {
+      width: 70%;
+      padding: 0.1rem 0.3rem;
+    }
+
+    .availability {
+      width: 40%;
+      text-align: right;
+      background-color: white;
+      padding-right: .3rem;
+    }
+  }
+}
+.employee-1 {
+background-color: #fb7756;
+}
+
+.employee-2 {
+  background-color: #facd60;
+}
+
+.employee-3 {
+  background-color: #1ac0c6;
 }

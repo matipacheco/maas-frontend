@@ -1,5 +1,5 @@
 import React from 'react';
-import { timeFormat } from './../../utils/dateUtil';
+import { timeFormat } from '../../utils/dateUtil';
 
 export default function DaySchedule(props) {
   return (
@@ -12,9 +12,9 @@ export default function DaySchedule(props) {
       
       <tbody className='schedule-day-body'>
         {
-          props.schedule.map((hour) => {
+          props.schedule.map((hour, index) => {
             return (
-              <tr>
+              <tr key={index}>
 
                 <td className='hour'>
                   {timeFormat(hour)}
