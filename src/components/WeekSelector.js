@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import axios from 'axios';
 import { MaasContext } from './context/Context';
 
@@ -27,18 +27,42 @@ export default function WeekSelector() {
 
   return (
     <li className="list-group-item list-group-item-action bg-light">
-      <label>
-        Semana
-      </label>
-      <select className='form-control' onChange={handleOnChange}>
-        {
-          weeks.map(week => {
-            return <option key={week.id} value={week.id}>
-              {week.name}
-            </option>
-          })
-        }
-      </select>
+      {
+        weeks ?
+        <Fragment>
+          <label>
+            Semana
+          </label>
+          <select className='form-control' onChange={handleOnChange}>
+            {
+              weeks.map(week => {
+                return <option key={week.id} value={week.id}>
+                  {week.name}
+                </option>
+              })
+            }
+          </select>
+
+          {
+            maasContext.week &&
+            <p className="date-range">
+              <small>
+                del
+              </small>
+              &nbsp;
+              <b>{ maasContext.week.start_date }</b>
+              &nbsp;
+              <small>
+                hasta
+              </small>
+              &nbsp;
+              <b>{ maasContext.week.end_date }</b>
+            </p>
+          }
+        </Fragment> :
+
+        <div class="spinner-border" role="status" />
+      }
     </li>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import axios from 'axios';
 import { MaasContext } from './context/Context';
 
@@ -27,18 +27,25 @@ export default function ServiceSelector() {
 
   return (
     <li className="list-group-item list-group-item-action bg-light">
-      <label>
-        Servicio
-      </label>
-      <select className='form-control' onChange={handleOnChange}>
-        {
-          services.map(service => {
-            return <option key={service.id} value={service.id}>
-              {service.name}
-            </option>
-          })
-        }
-      </select>
+      {
+        services ?
+        <Fragment>
+          <label>
+            Servicio
+          </label>
+          <select className='form-control' onChange={handleOnChange}>
+            {
+              services.map(service => {
+                return <option key={service.id} value={service.id}>
+                  {service.name}
+                </option>
+              })
+            }
+          </select>
+        </Fragment> :
+
+        <div class="spinner-border" role="status" />
+      }
     </li>
   )
 }
