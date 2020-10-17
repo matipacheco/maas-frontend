@@ -1,7 +1,7 @@
 import React from 'react';
 import Menu from './Menu';
 import NavBar from './NavBar';
-import Schedule from './Schedule';
+import Schedule from './schedule/Schedule';
 import ProviderWrapper from './context/ContextProvider';
 
 export default function Maas() {

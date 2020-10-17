@@ -44,7 +44,7 @@ export default function ServiceSelector() {
           </select>
         </Fragment> :
 
-        <div class="spinner-border" role="status" />
+        <div className="spinner-border" role="status" />
       }
     </li>
   )

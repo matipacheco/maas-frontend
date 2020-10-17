@@ -47,3 +47,18 @@ code {
   margin-top: 0.5rem;
   font-size: small;
 }
+
+#schedule {
+  padding: 2rem 5rem;
+
+  .schedule-day {
+    margin: 1rem
+  }
+
+  .table {
+    .schedule-day-head {
+      background-color: antiquewhite;
+    }
+  }
+
+}
