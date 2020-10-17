@@ -13,13 +13,14 @@ export default function EmployeeList() {
   }, [])
 
   return (
-    <li className="list-group-item list-group-item-action bg-light">
+    <li id="employee-list" className="list-group-item list-group-item-action bg-light">
       {
         maasContext.employees ?
         <Fragment>
           <label>
             Empleados
           </label>
+
           <div className="employee-list">
             {
               maasContext.employees.map((employee, index) => {
@@ -30,6 +31,12 @@ export default function EmployeeList() {
               })
             }
           </div>
+
+          <small>
+            <p>
+              La tabla muestra la cantidad de <b>cupos utilizados</b> por empleado a la semana.
+            </p>
+          </small>
         </Fragment> :
 
         <div className="spinner-border" role="status" />
