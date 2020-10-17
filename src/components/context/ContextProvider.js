@@ -8,12 +8,6 @@ export default function ProviderWrapper(props) {
 
   const updateService = (service) => {
     setService(service);
-    // updateCommands(state => {
-    //   return state.concat({
-    //     id: state.length,
-    //     text: command
-    //   });
-    // });
   }
 
   const updateWeek = (week) => {

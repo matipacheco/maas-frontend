@@ -6,7 +6,14 @@ export default function Schedule() {
 
   return (
     <div className="container-fluid">
-      { maasContext.service && maasContext.service.name }
+      {
+        maasContext.service &&
+        <p>{maasContext.service.name}</p>
+      }
+      {
+        maasContext.week &&
+        <p>{maasContext.week.name}</p>
+      }
     </div>
   )
 }
