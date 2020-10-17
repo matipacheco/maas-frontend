@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, Fragment } from 'react';
-import { MaasContext } from './context/Context';
+import { MaasContext } from './../context/Context';
 import axios from 'axios';
 
 export default function EmployeeList() {

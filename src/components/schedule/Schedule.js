@@ -5,28 +5,46 @@ import DaySchedule from './DaySchedule';
 
 export default function Schedule() {
   const maasContext = useContext(MaasContext);
+  const [loading, setLoading] = useState(false);
   const [schedule, setSchedule] = useState();
 
   useEffect(() => {
+    setLoading(true);
+
     if (!maasContext.service || !maasContext.week)
       return;
 
     axios.get(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${maasContext.service.id}/${maasContext.week.id}`)
     .then(response => {
-      setSchedule(response.data.schedule);
+      if (response.data) {
+        setSchedule(response.data.schedule);
+      } else {
+        setSchedule(null);
+      }
+
+      setLoading(false);
     })
   }, [maasContext.service, maasContext.week])
 
   return (
     <div id='schedule' className="container-fluid">
       {
-        schedule ?
+        loading &&
+        <div className="text-center">
+          <div className="spinner-border" role="status" />
+        </div>
+      }
+
+      {
+        !loading && schedule ?
         Object.keys(schedule).map((day, index) => {
           return <DaySchedule day={day} schedule={schedule[day]} index={index} />
         }) :
 
         <div className="text-center">
-          <div className="spinner-border" role="status" />
+          <h1>
+            No hay agenda disponible
+          </h1>
         </div>
       }
     </div>

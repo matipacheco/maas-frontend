@@ -1,7 +1,7 @@
 import React from 'react';
-import WeekSelector from './WeekSelector';
-import ServiceSelector from './ServiceSelector';
-import EmployeeList from './EmployeeList';
+import WeekSelector from './menu/WeekSelector';
+import ServiceSelector from './menu/ServiceSelector';
+import EmployeeList from './menu/EmployeeList';
 
 export default function Menu() {
   return (

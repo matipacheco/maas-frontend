@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 import axios from 'axios';
-import { MaasContext } from './context/Context';
+import { MaasContext } from './../context/Context';
 
 export default function ServiceSelector() {
   const [services, setServices] = useState([]);
