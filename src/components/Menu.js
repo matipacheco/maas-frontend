@@ -4,10 +4,10 @@ import ServiceSelector from './ServiceSelector';
 
 export default function Menu() {
   return (
-    <div class="bg-light border-right" id="sidebar-menu">
-      <div class="sidebar-heading">Menu</div>
+    <div className="bg-light border-right" id="sidebar-menu">
+      <div className="sidebar-heading">Menu</div>
 
-      <ul class="list-group list-group-flush">
+      <ul className="list-group list-group-flush">
         <ServiceSelector />
         <WeekSelector />
       </ul>

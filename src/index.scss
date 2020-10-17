@@ -35,5 +35,10 @@ code {
 }
 
 .navbar {
-  flex-direction: row-reverse;
+  padding: 1rem 0.5rem;
+  justify-content: space-between;
+
+  h4 {
+    margin: 0;
+  }
 }

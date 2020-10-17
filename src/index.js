@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.scss';
-import App from './components/App';
+import Maas from './components/Maas';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Maas />
   </React.StrictMode>,
   document.getElementById('root')
 );
