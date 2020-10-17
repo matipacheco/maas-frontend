@@ -5,20 +5,27 @@ export default function ProviderWrapper(props) {
   const maasContext = useContext(MaasContext);
   const [service, setService] = useState(maasContext.service);
   const [week, setWeek] = useState(maasContext.week);
+  const [editModeOn, setEditModeOn] = useState(maasContext.editModeOn);
 
-  const updateService = (service) => {
+  const updateService = service => {
     setService(service);
   }
 
-  const updateWeek = (week) => {
+  const updateWeek = week => {
     setWeek(week);
+  }
+
+  const toggleEditMode = () => {
+    setEditModeOn(!editModeOn);
   }
 
   const provider = {
     service,
     week,
+    editModeOn,
     updateService,
-    updateWeek
+    updateWeek,
+    toggleEditMode
   }
 
   return (
