@@ -6,6 +6,7 @@ export default function WeekSelector() {
   const [weeks, setWeeks] = useState([]);
 
   const maasContext = useContext(MaasContext);
+  const editModeOn = maasContext.editModeOn;
 
   useEffect(() => {
     axios.get("http://127.0.0.1:3000/api/v1/weeks")
@@ -33,7 +34,7 @@ export default function WeekSelector() {
           <label>
             Semana
           </label>
-          <select className='form-control' onChange={handleOnChange}>
+          <select className='form-control' onChange={handleOnChange} disabled={editModeOn}>
             {
               weeks.map(week => {
                 return <option key={week.id} value={week.id}>

@@ -6,6 +6,7 @@ export default function ServiceSelector() {
   const [services, setServices] = useState([]);
 
   const maasContext = useContext(MaasContext);
+  const editModeOn = maasContext.editModeOn;
 
   useEffect(() => {
     axios.get("http://127.0.0.1:3000/api/v1/services")
@@ -33,7 +34,7 @@ export default function ServiceSelector() {
           <label>
             Servicio
           </label>
-          <select className='form-control' onChange={handleOnChange}>
+          <select className='form-control' onChange={handleOnChange} disabled={editModeOn}>
             {
               services.map(service => {
                 return <option key={service.id} value={service.id}>
