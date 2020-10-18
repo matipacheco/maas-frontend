@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MaasContext } from './../context/Context';
 import axios from 'axios';
-import DaySchedule from './DaySchedule';
+import DaySchedule from './ConfirmedSchedule';
+import EditableSchedule from './EditableSchedule';
 
 export default function Schedule() {
   const maasContext = useContext(MaasContext);
@@ -14,7 +15,7 @@ export default function Schedule() {
     if (!maasContext.service || !maasContext.week)
       return;
 
-    axios.get(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${maasContext.service.id}/${maasContext.week.id}`)
+    axios.get(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${maasContext.week.id}/${maasContext.service.id}`)
     .then(response => {
       if (response.data) {
         setSchedule(response.data.schedule);
@@ -36,16 +37,20 @@ export default function Schedule() {
       }
 
       {
-        !loading && schedule ?
-        Object.keys(schedule).map((day, index) => {
-          return <DaySchedule day={day} schedule={schedule[day]} index={index} />
-        }) :
+        !loading && !maasContext.editModeOn && schedule ?
+          Object.keys(schedule).map((day, index) => {
+            return <DaySchedule day={day} schedule={schedule[day]} index={index} />
+          }) :
 
-        <div className="text-center">
-          <h1>
-            No hay agenda disponible
-          </h1>
-        </div>
+          <div className="text-center">
+            <h1>
+              No hay agenda disponible
+            </h1>
+          </div>
+      }
+
+      {
+        !loading && maasContext.editModeOn && <EditableSchedule />
       }
     </div>
   )
