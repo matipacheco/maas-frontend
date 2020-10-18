@@ -22,19 +22,26 @@ export default function EmployeeList() {
           </label>
 
           <div className="employee-list">
-            {
-              maasContext.employees.map((employee, index) => {
-                return <div key={index} className="employee-row">
-                  <span className={`employee employee-${employee.id}`}>{employee.name}</span>
-                  <span className="availability">{employee.availability}</span>
-                </div>
-              })
-            }
+            <Fragment>
+              {
+                maasContext.employees.map((employee, index) => {
+                  return <div key={index} className="employee-row">
+                    <span className={`employee employee-${employee.id}`}>{employee.name}</span>
+                    <span className="availability">{employee.availability ? employee.availability : '-'}</span>
+                  </div>
+                })
+              }
+
+              <div className="employee-row">
+                <span className='employee'>Sin asignar</span>
+                <span className="availability">-</span>
+              </div>
+            </Fragment>
           </div>
 
           <small>
             <p>
-              La tabla muestra la cantidad de <b>cupos utilizados</b> por empleado a la semana.
+              La tabla muestra la cantidad de <b>cupos confirmados</b> por empleado para dicha semana.
             </p>
           </small>
         </Fragment> :

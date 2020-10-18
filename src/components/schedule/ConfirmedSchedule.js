@@ -15,11 +15,10 @@ export default function DaySchedule(props) {
       
       <tbody className='schedule-day-body'>
         {
-          props.schedule.map((hour, index) => {
-            // TODO: replace with the real logic
-            const employee_id = Math.floor(1 + Math.random() * Math.floor(4));
+          Object.keys(props.schedule).map((hour, index) => {
+            const employeeId = props.schedule[hour];
             const employee = maasContext.employees.find(employee => {
-              return employee.id === employee_id
+              return employee.id === employeeId;
             });
 
             return (
@@ -28,7 +27,7 @@ export default function DaySchedule(props) {
                   {timeFormat(hour)}
                 </td>
 
-                <td className={`employee employee-${employee_id}`}>
+                <td className={`employee employee-${employeeId}`}>
                   {
                     employee ? employee.name : '⚠️'
                   }
