@@ -5,16 +5,18 @@ import { timeFormat } from '../../utils/dateUtil';
 
 export default function EditableSchedule() {
   const maasContext = useContext(MaasContext);
-  const employees = maasContext.employees;
   const week = maasContext.week;
+  const employees = maasContext.employees;
+  const currentShift = maasContext.currentShift;
 
   const [availabilities, setAvailabilities] = useState({});
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:3000/api/v1/weeks/${week.id}/availabilities`)
-    .then(response => {
-      setAvailabilities(response.data);
-    })
+    if (currentShift)
+      axios.get(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${currentShift}/availabilities`)
+      .then(response => {
+        setAvailabilities(response.data);
+      })
   }, [])
 
   const updateAvailability = (day, hour, employee) => {

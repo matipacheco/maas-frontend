@@ -3,10 +3,11 @@ import { MaasContext, MaasContextProvider } from './Context';
 
 export default function ProviderWrapper(props) {
   const maasContext = useContext(MaasContext);
-  const [service, setService] = useState(maasContext.service);
   const [week, setWeek] = useState(maasContext.week);
-  const [editModeOn, setEditModeOn] = useState(maasContext.editModeOn);
+  const [service, setService] = useState(maasContext.service);
   const [employees, setEmployees] = useState(maasContext.employees);
+  const [editModeOn, setEditModeOn] = useState(maasContext.editModeOn);
+  const [currentShift, setCurrentShift] = useState(maasContext.currentShift);
 
   const updateService = service => {
     setService(service);
@@ -24,6 +25,10 @@ export default function ProviderWrapper(props) {
     setEmployees(employeeList);
   }
 
+  const updateCurrentShit = shiftId => {
+    setCurrentShift(shiftId);
+  }
+
   const provider = {
     service,
     week,
@@ -32,7 +37,9 @@ export default function ProviderWrapper(props) {
     updateService,
     updateWeek,
     toggleEditMode,
-    updateEmployees
+    updateEmployees,
+    currentShift,
+    updateCurrentShit
   }
 
   return (

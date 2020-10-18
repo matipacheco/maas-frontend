@@ -1,10 +1,11 @@
 import { createContext } from 'react';
 
 export const MaasContext = createContext({
-  service: null,
   week: null,
+  service: null,
+  employees: [],
   editModeOn: false,
-  employees: []
+  currentShift: null
 });
 
 export const MaasContextProvider = MaasContext.Provider;

@@ -19,6 +19,7 @@ export default function Schedule() {
     .then(response => {
       if (response.data) {
         setSchedule(response.data.schedule);
+        maasContext.updateCurrentShit(response.data.id);
       } else {
         setSchedule(null);
       }
