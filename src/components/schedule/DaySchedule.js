@@ -1,15 +1,26 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { timeFormat } from '../../utils/dateUtil';
 import { MaasContext } from './../context/Context';
 
 export default function DaySchedule(props) {
   const maasContext = useContext(MaasContext);
+  const editModeOn = maasContext.editModeOn;
 
   return (
     <table key={props.index} className='table table-bordered'>
       <thead className='schedule-day-head'>
         <tr>
-          <th colSpan='2'>{props.day}</th>
+          <th colSpan={editModeOn ? '1' : '2'}>{props.day}</th>
+          {
+            editModeOn &&
+            <Fragment>
+              {
+                maasContext.employees.map(employee => {
+                  return <th key={employee.id}>{employee.name}</th>
+                })
+              }
+            </Fragment>
+          }
         </tr>
       </thead>
       
@@ -23,17 +34,32 @@ export default function DaySchedule(props) {
             });
 
             return (
-              <tr key={index}>
+              <tr key={index} className={`${editModeOn ? 'editable-row' : ''}`}>
 
                 <td className={`hour ${employee ? 'green' : 'red'}`}>
                   {timeFormat(hour)}
                 </td>
 
-                <td className={`employee employee-${employee_id}`}>
-                  {
-                    employee ? employee.name : '⚠️'
-                  }
-                </td>
+                {
+                  !editModeOn &&
+                  <td className={`employee employee-${employee_id}`}>
+                    {
+                      employee ? employee.name : '⚠️'
+                    }
+                  </td>
+                }
+
+                {
+                  editModeOn &&
+                  maasContext.employees.map(employee => {
+                    return (
+                      <td key={employee.id}>
+                        <input type='checkbox' value={employee.employee_id} />
+                      </td>
+                    )
+                  })
+                }
+
               </tr>
             )
           })

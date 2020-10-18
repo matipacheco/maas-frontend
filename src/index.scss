@@ -62,7 +62,18 @@ code {
     .schedule-day-head {
       background-color: antiquewhite;
     }
+
+    tr {
+      .editable-row {
+        display: flex;
+      }
+      td {
+        width: 25%;
+      }
+    }
   }
+
+
 }
 
 #employee-list {
@@ -99,7 +110,7 @@ code {
 }
 
 .employee-1 {
-background-color: #fb7756;
+  background-color: #fb7756;
 }
 
 .employee-2 {
