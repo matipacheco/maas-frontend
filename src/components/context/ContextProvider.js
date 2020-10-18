@@ -8,6 +8,7 @@ export default function ProviderWrapper(props) {
   const [employees, setEmployees] = useState(maasContext.employees);
   const [editModeOn, setEditModeOn] = useState(maasContext.editModeOn);
   const [currentShift, setCurrentShift] = useState(maasContext.currentShift);
+  const [refreshShifts, setRefreshShifts] = useState(maasContext.refreshShifts);
 
   const updateService = service => {
     setService(service);
@@ -25,8 +26,12 @@ export default function ProviderWrapper(props) {
     setEmployees(employeeList);
   }
 
-  const updateCurrentShit = shiftId => {
+  const updateCurrentShift = shiftId => {
     setCurrentShift(shiftId);
+  }
+
+  const updateRefreshShifts = value => {
+    setRefreshShifts(value);
   }
 
   const provider = {
@@ -39,7 +44,9 @@ export default function ProviderWrapper(props) {
     toggleEditMode,
     updateEmployees,
     currentShift,
-    updateCurrentShit
+    updateCurrentShift,
+    refreshShifts,
+    updateRefreshShifts
   }
 
   return (

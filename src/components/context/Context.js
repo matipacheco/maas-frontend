@@ -5,7 +5,8 @@ export const MaasContext = createContext({
   service: null,
   employees: [],
   editModeOn: false,
-  currentShift: null
+  currentShift: null,
+  refreshShifts: false,
 });
 
 export const MaasContextProvider = MaasContext.Provider;

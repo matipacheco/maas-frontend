@@ -11,8 +11,8 @@ export default function NavBar() {
   }
 
   const handleSubmit = () => {
-    // Call for monitoring_shift/update endpoint!
     maasContext.toggleEditMode();
+    maasContext.updateRefreshShifts(true);
   }
 
   return (

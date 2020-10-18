@@ -12,23 +12,33 @@ export default function Schedule() {
   const [schedule, setSchedule] = useState();
 
   useEffect(() => {
-    setLoading(true);
-
     if (!maasContext.service || !maasContext.week)
       return;
+    
+    if (maasContext.refreshShifts)
+      maasContext.updateRefreshShifts(false);
+
+    fecthMonitoringShifts();
+  }, [maasContext.service, maasContext.week, maasContext.refreshShifts])
+
+  const fecthMonitoringShifts = () => {
+    setLoading(true);
+
+    alert("holo")
 
     axios.get(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${maasContext.week.id}/${maasContext.service.id}`)
     .then(response => {
       if (response.data) {
         setSchedule(response.data.schedule);
-        maasContext.updateCurrentShit(response.data.id);
+        maasContext.updateCurrentShift(response.data.id);
+
       } else {
         setSchedule(null);
       }
 
       setLoading(false);
     })
-  }, [maasContext.service, maasContext.week])
+  }
 
   return (
     <div id='schedule' className="container-fluid">
