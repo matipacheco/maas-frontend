@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MaasContext } from './../context/Context';
-import axios from 'axios';
 import DaySchedule from './ConfirmedSchedule';
 import EditableSchedule from './EditableSchedule';
 
 import _ from 'lodash';
+import axios from 'axios';
+
+import blocksAssigned from './../../utils/employeesUtil';
 
 export default function Schedule() {
   const maasContext = useContext(MaasContext);
@@ -27,7 +29,11 @@ export default function Schedule() {
     axios.get(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${maasContext.week.id}/${maasContext.service.id}`)
     .then(response => {
       if (response.data) {
-        setSchedule(response.data.structure);
+        const schedule = response.data.structure;
+
+        setSchedule(schedule);
+        maasContext.setEmployeesAvailabilities(blocksAssigned(schedule));
+
         maasContext.updateCurrentShift(response.data.id);
 
       } else {

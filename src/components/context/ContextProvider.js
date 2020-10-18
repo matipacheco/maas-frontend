@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import EmployeeList from '../menu/EmployeeList';
 import { MaasContext, MaasContextProvider } from './Context';
 
 export default function ProviderWrapper(props) {
@@ -26,6 +27,19 @@ export default function ProviderWrapper(props) {
     setEmployees(employeeList);
   }
 
+  const setEmployeesAvailabilities = occurrences => {
+    let employeeList = [...employees];
+    
+    if (employeeList.length == 0)
+      return
+
+    employeeList = employeeList.map(employee => {
+      return ({...employee, availability: occurrences[employee.id]});
+    });
+
+    setEmployees(employeeList);
+  }
+
   const updateCurrentShift = shiftId => {
     setCurrentShift(shiftId);
   }
@@ -46,7 +60,8 @@ export default function ProviderWrapper(props) {
     currentShift,
     updateCurrentShift,
     refreshShifts,
-    updateRefreshShifts
+    updateRefreshShifts,
+    setEmployeesAvailabilities
   }
 
   return (
