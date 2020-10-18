@@ -1,6 +1,7 @@
 import React from 'react';
-import WeekSelector from './WeekSelector';
-import ServiceSelector from './ServiceSelector';
+import WeekSelector from './menu/WeekSelector';
+import ServiceSelector from './menu/ServiceSelector';
+import EmployeeList from './menu/EmployeeList';
 
 export default function Menu() {
   return (
@@ -10,6 +11,7 @@ export default function Menu() {
       <ul className="list-group list-group-flush">
         <ServiceSelector />
         <WeekSelector />
+        <EmployeeList />
       </ul>
     </div>
   )

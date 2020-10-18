@@ -1,19 +1,20 @@
 import React from 'react';
 import Menu from './Menu';
 import NavBar from './NavBar';
+import Schedule from './schedule/Schedule';
+import ProviderWrapper from './context/ContextProvider';
 
 export default function Maas() {
   return (
     <div className="d-flex">
-      <Menu/>
+      <ProviderWrapper>
+        <Menu/>
 
-      <div id="page-content">
-        <NavBar />
-
-        <div className="container-fluid">
-          Horario
+        <div id="page-content">
+          <NavBar />
+          <Schedule />
         </div>
-      </div>
+      </ProviderWrapper>
     </div>
   );
 }

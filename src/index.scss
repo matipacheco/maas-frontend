@@ -37,8 +37,94 @@ code {
 .navbar {
   padding: 1rem 0.5rem;
   justify-content: space-between;
+  background-color: #777777;
+  color: white;
 
   h4 {
     margin: 0;
   }
+}
+
+.date-range {
+  margin-top: 0.5rem;
+  font-size: small;
+  margin-bottom: 0;
+}
+
+#schedule {
+  padding: 2rem 5rem;
+
+  .schedule-day {
+    margin: 1rem
+  }
+
+  .table {
+    .schedule-day-head {
+      background-color: antiquewhite;
+    }
+
+    tr {
+      .editable-row {
+        display: flex;
+      }
+      td {
+        width: 25%;
+      }
+    }
+  }
+
+
+}
+
+#employee-list {
+  .employee-list {
+    display: flex;
+    flex-direction: column;
+  
+    .employee-row {
+      display: flex;
+  
+      span {
+        font-size: 1rem;
+        border: 1px  solid gray;
+      }
+  
+      .employee {
+        width: 70%;
+        padding: 0.1rem 0.3rem;
+      }
+  
+      .availability {
+        width: 40%;
+        text-align: right;
+        background-color: white;
+        padding-right: .3rem;
+      }
+    }
+  }
+
+  small > p {
+    margin-top: 0.1rem;
+    font-size: smaller;
+  }
+}
+
+.employee-1 {
+  background-color: #fb7756;
+}
+
+.employee-2 {
+  background-color: #facd60;
+}
+
+.employee-3 {
+  background-color: #1ac0c6;
+}
+
+.green {
+  background-color: #ccf6c8;
+}
+
+.red {
+  background-color: #f9c0c0;
 }
