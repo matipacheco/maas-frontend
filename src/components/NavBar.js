@@ -28,7 +28,7 @@ export default function NavBar() {
 
       <div>
         <div className={`btn btn-${editModeOn ? 'success': 'info'}`} onClick={editModeOn ? handleSubmit : handleClick}>
-          {editModeOn ? 'Guardar': 'Editar'}
+          {editModeOn ? 'Listo': 'Editar'}
         </div>
       </div>
     </nav>

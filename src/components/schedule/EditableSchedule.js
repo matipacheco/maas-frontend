@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { MaasContext } from './../context/Context';
-import axios from 'axios';
 import { timeFormat } from '../../utils/dateUtil';
+
+import axios from 'axios';
+import _ from 'lodash';
 
 export default function EditableSchedule() {
   const maasContext = useContext(MaasContext);
@@ -19,16 +21,16 @@ export default function EditableSchedule() {
       })
   }, [])
 
-  const updateAvailability = (day, hour, employee) => {
-    // axios.put(`http://127.0.0.1:3000/api/v1/availability/`, {
-    //   week_id: week,
-    //   day: day,
-    //   hour: hour,
-    //   employee_id: employee
-    // })
-    // .then(response => {
-    //   setAvailabilities(response.data);
-    // })
+  const updateAvailability = (day, hour, employee_id) => {
+    axios.put(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${currentShift}/availabilities`, {
+      availability: {
+        week_id: week.id,
+        employee_id: employee_id,
+        day: parseInt(day),
+        hour: parseInt(hour)
+      }
+    })
+    .then(response => {})
   }
 
   return (
@@ -82,15 +84,34 @@ function Hour(props) {
   const maasContext = useContext(MaasContext);
   const employees = maasContext.employees;
 
-  const handleOnchange = (event, employee_id) => {
-    event.preventDefault();
+  const [employeeList, setEmployeeList] = useState(props.employeeList);
+
+  useEffect(() => {
+    console.log("lala");
+    console.log(_.isEmpty(employeeList));
+  }, [employeeList])
+
+  const handleOnchange = employee_id => event => {
     props.updateAvailability(props.day, props.hour, employee_id);
+
+    setEmployeeList(state => {
+      let updatedEmployeeList = state;
+
+      if (updatedEmployeeList.includes(employee_id)) {
+        const employeeIndex = updatedEmployeeList.indexOf(employee_id);
+        updatedEmployeeList.splice(employeeIndex, 1);
+  
+      } else {
+        updatedEmployeeList.push(employee_id);
+      }
+
+      return updatedEmployeeList;
+    }); 
   }
 
   return (
     <tr key={props.hour}>
-      {/* <td className={`hour ${employee ? 'green' : 'red'}`}> */}
-      <td className='hour'>
+       <td className={`hour ${_.isEmpty(employeeList) ? 'red' : 'green'}`}>
         {timeFormat(props.hour)}
       </td>
       {
@@ -100,8 +121,8 @@ function Hour(props) {
               <input
                 type='checkbox'
                 value={employee.id}
-                defaultChecked={props.employeeList.includes(employee.id)}
-                onChange={ (event) => handleOnchange(event, employee.id)}
+                defaultChecked={employeeList.includes(employee.id)}
+                onChange={handleOnchange(employee.id)}
               />
             </td>
           )

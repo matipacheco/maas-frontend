@@ -4,6 +4,8 @@ import axios from 'axios';
 import DaySchedule from './ConfirmedSchedule';
 import EditableSchedule from './EditableSchedule';
 
+import _ from 'lodash';
+
 export default function Schedule() {
   const maasContext = useContext(MaasContext);
   const [loading, setLoading] = useState(false);
@@ -38,16 +40,19 @@ export default function Schedule() {
       }
 
       {
-        !loading && !maasContext.editModeOn && schedule ?
-          Object.keys(schedule).map((day, index) => {
-            return <DaySchedule day={day} schedule={schedule[day]} index={index} />
-          }) :
+        !loading && _.isEmpty(schedule) &&
+        <div className="text-center">
+          <h1>
+            No hay agenda disponible
+          </h1>
+        </div>
+      }
 
-          <div className="text-center">
-            <h1>
-              No hay agenda disponible
-            </h1>
-          </div>
+      {
+        !loading && !maasContext.editModeOn && schedule &&
+        Object.keys(schedule).map((day, index) => {
+          return <DaySchedule day={day} schedule={schedule[day]} index={index} />
+        })
       }
 
       {
