@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { MaasContext } from './context/Context';
 
+import axios from 'axios';
+
 export default function NavBar() {
   const maasContext = useContext(MaasContext);
   const editModeOn = maasContext.editModeOn;
@@ -12,7 +14,11 @@ export default function NavBar() {
 
   const handleSubmit = () => {
     maasContext.toggleEditMode();
-    maasContext.updateRefreshShifts(true);
+
+    axios.put(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${maasContext.currentShift}`)
+    .then(() => {
+      maasContext.updateRefreshShifts(true);
+    })
   }
 
   return (
