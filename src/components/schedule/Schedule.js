@@ -24,8 +24,6 @@ export default function Schedule() {
   const fecthMonitoringShifts = () => {
     setLoading(true);
 
-    alert("holo")
-
     axios.get(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${maasContext.week.id}/${maasContext.service.id}`)
     .then(response => {
       if (response.data) {
@@ -53,7 +51,7 @@ export default function Schedule() {
         !loading && _.isEmpty(schedule) &&
         <div className="text-center">
           <h1>
-            No hay agenda disponible
+            No hay turnos confirmados
           </h1>
         </div>
       }

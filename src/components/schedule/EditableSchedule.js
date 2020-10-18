@@ -86,27 +86,19 @@ function Hour(props) {
 
   const [employeeList, setEmployeeList] = useState(props.employeeList);
 
-  useEffect(() => {
-    console.log("lala");
-    console.log(_.isEmpty(employeeList));
-  }, [employeeList])
+  const handleOnchange = employeeId => event => {
+    let updatedEmployeeList = [...employeeList];
 
-  const handleOnchange = employee_id => event => {
-    props.updateAvailability(props.day, props.hour, employee_id);
+    if (updatedEmployeeList.includes(employeeId)) {
+      const employeeIndex = updatedEmployeeList.indexOf(employeeId);
+      updatedEmployeeList.splice(employeeIndex, 1);
 
-    setEmployeeList(state => {
-      let updatedEmployeeList = state;
+    } else {
+      updatedEmployeeList.push(employeeId);
+    }
 
-      if (updatedEmployeeList.includes(employee_id)) {
-        const employeeIndex = updatedEmployeeList.indexOf(employee_id);
-        updatedEmployeeList.splice(employeeIndex, 1);
-  
-      } else {
-        updatedEmployeeList.push(employee_id);
-      }
-
-      return updatedEmployeeList;
-    }); 
+    setEmployeeList(updatedEmployeeList);
+    props.updateAvailability(props.day, props.hour, employeeId);
   }
 
   return (
