@@ -30,11 +30,10 @@ export default function Schedule() {
     .then(response => {
       if (response.data) {
         const schedule = response.data.structure;
-
         setSchedule(schedule);
-        maasContext.setEmployeesAvailabilities(blocksAssigned(schedule));
 
         maasContext.updateCurrentShift(response.data.id);
+        maasContext.setEmployeesAvailabilities(blocksAssigned(schedule));
 
       } else {
         setSchedule(null);

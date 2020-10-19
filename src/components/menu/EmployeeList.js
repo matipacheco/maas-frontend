@@ -4,6 +4,8 @@ import axios from 'axios';
 
 export default function EmployeeList() {
   const maasContext = useContext(MaasContext);
+  const employees = maasContext.employees;
+  const availabilities = maasContext.assignedAvailabilities;
 
   useEffect(() => {
     axios.get("http://127.0.0.1:3000/api/v1/employees")
@@ -15,7 +17,7 @@ export default function EmployeeList() {
   return (
     <li id="employee-list" className="list-group-item list-group-item-action bg-light">
       {
-        maasContext.employees ?
+        employees ?
         <Fragment>
           <label>
             Empleados
@@ -24,17 +26,19 @@ export default function EmployeeList() {
           <div className="employee-list">
             <Fragment>
               {
-                maasContext.employees.map((employee, index) => {
+                employees.map((employee, index) => {
+                  let availability = availabilities && availabilities[employee.id];
+
                   return <div key={index} className="employee-row">
                     <span className={`employee employee-${employee.id}`}>{employee.name}</span>
-                    <span className="availability">{employee.availability ? employee.availability : '-'}</span>
+                    <span className="availability">{availability ? availability : '-'}</span>
                   </div>
                 })
               }
 
               <div className="employee-row">
                 <span className='employee'>Sin asignar</span>
-                <span className="availability">-</span>
+                <span className="availability">{availabilities && availabilities[null] ? availabilities[null] : '-'}</span>
               </div>
             </Fragment>
           </div>

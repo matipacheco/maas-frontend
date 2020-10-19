@@ -37,7 +37,7 @@ code {
 .navbar {
   padding: 1rem 0.5rem;
   justify-content: space-between;
-  background-color: #777777;
+  background-color: #39434A;
   color: white;
 
   h4 {
@@ -58,9 +58,9 @@ code {
     margin: 1rem
   }
 
-  .table {
+  table {
     .schedule-day-head {
-      background-color: antiquewhite;
+      background-color: #F0F1F5;
     }
 
     tr {
@@ -73,7 +73,11 @@ code {
     }
   }
 
-
+  table, th, tr, td {
+    border: 1px  inset #636e72;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
 }
 
 #employee-list {
@@ -86,7 +90,7 @@ code {
   
       span {
         font-size: 1rem;
-        border: 1px  solid gray;
+        border: 1px inset gray;
       }
   
       .employee {
@@ -110,21 +114,21 @@ code {
 }
 
 .employee-1 {
-  background-color: #fb7756;
+  background-color: #DAE1F0;
 }
 
 .employee-2 {
-  background-color: #facd60;
+  background-color: #DBBDB3;
 }
 
 .employee-3 {
-  background-color: #1ac0c6;
+  background-color: #E6DBB6;
 }
 
 .green {
-  background-color: #ccf6c8;
+  background-color: #DEF5E0;
 }
 
 .red {
-  background-color: #f9c0c0;
+  background-color: #F9DAD3;
 }

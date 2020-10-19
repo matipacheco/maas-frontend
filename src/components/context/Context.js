@@ -7,6 +7,7 @@ export const MaasContext = createContext({
   editModeOn: false,
   currentShift: null,
   refreshShifts: false,
+  assignedAvailabilities: {}
 });
 
 export const MaasContextProvider = MaasContext.Provider;

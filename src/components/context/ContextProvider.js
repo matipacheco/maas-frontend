@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import EmployeeList from '../menu/EmployeeList';
 import { MaasContext, MaasContextProvider } from './Context';
 
 export default function ProviderWrapper(props) {
@@ -10,6 +9,7 @@ export default function ProviderWrapper(props) {
   const [editModeOn, setEditModeOn] = useState(maasContext.editModeOn);
   const [currentShift, setCurrentShift] = useState(maasContext.currentShift);
   const [refreshShifts, setRefreshShifts] = useState(maasContext.refreshShifts);
+  const [assignedAvailabilities, setAsignedAvailabilities] = useState(maasContext.assignedAvailabilities);
 
   const updateService = service => {
     setService(service);
@@ -28,16 +28,7 @@ export default function ProviderWrapper(props) {
   }
 
   const setEmployeesAvailabilities = occurrences => {
-    let employeeList = [...employees];
-    
-    if (employeeList.length == 0)
-      return
-
-    employeeList = employeeList.map(employee => {
-      return ({...employee, availability: occurrences[employee.id]});
-    });
-
-    setEmployees(employeeList);
+    setAsignedAvailabilities(occurrences);
   }
 
   const updateCurrentShift = shiftId => {
@@ -61,6 +52,7 @@ export default function ProviderWrapper(props) {
     updateCurrentShift,
     refreshShifts,
     updateRefreshShifts,
+    assignedAvailabilities,
     setEmployeesAvailabilities
   }
 

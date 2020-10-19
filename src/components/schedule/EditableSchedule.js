@@ -7,7 +7,6 @@ import _ from 'lodash';
 
 export default function EditableSchedule() {
   const maasContext = useContext(MaasContext);
-  const week = maasContext.week;
   const employees = maasContext.employees;
   const currentShift = maasContext.currentShift;
 
@@ -24,7 +23,6 @@ export default function EditableSchedule() {
   const updateAvailability = (day, hour, employee_id) => {
     axios.put(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${currentShift}/availabilities`, {
       availability: {
-        week_id: week.id,
         employee_id: employee_id,
         day: parseInt(day),
         hour: parseInt(hour)
