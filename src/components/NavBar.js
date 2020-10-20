@@ -32,7 +32,7 @@ export default function NavBar() {
         </h4>
       }
 
-      <div>
+      <div id="edit-button">
         <div className={`btn btn-${editModeOn ? 'success': 'info'}`} onClick={editModeOn ? handleSubmit : handleClick}>
           {editModeOn ? 'Confirmar disponibilidad': 'Editar disponibilidad'}
         </div>
