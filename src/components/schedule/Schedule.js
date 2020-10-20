@@ -6,8 +6,6 @@ import EditableSchedule from './EditableSchedule';
 import _ from 'lodash';
 import axios from 'axios';
 
-import blocksAssigned from './../../utils/employeesUtil';
-
 export default function Schedule() {
   const maasContext = useContext(MaasContext);
   const [loading, setLoading] = useState(false);
@@ -29,11 +27,11 @@ export default function Schedule() {
     axios.get(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${maasContext.week.id}/${maasContext.service.id}`)
     .then(response => {
       if (response.data) {
-        const schedule = response.data.structure;
-        setSchedule(schedule);
+        const structure = response.data.structure;
+        setSchedule(structure.schedule);
 
         maasContext.updateCurrentShift(response.data.id);
-        maasContext.setEmployeesAvailabilities(blocksAssigned(schedule));
+        maasContext.setEmployeesAvailabilities(structure.workloads);
 
       } else {
         setSchedule(null);
