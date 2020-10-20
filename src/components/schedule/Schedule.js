@@ -24,14 +24,22 @@ export default function Schedule() {
   const fecthMonitoringShifts = () => {
     setLoading(true);
 
-    axios.get(`http://127.0.0.1:3000/api/v1/monitoring_shifts/${maasContext.week.id}/${maasContext.service.id}`)
+    axios.get('http://127.0.0.1:3000/api/v1/monitoring_shifts', {
+      params: {
+        week_id: maasContext.week.id,
+        service_id: maasContext.service.id
+      }
+    })
     .then(response => {
       if (response.data) {
         const structure = response.data.structure;
-        setSchedule(structure.schedule);
+        const schedule = _.isEmpty(structure) ? {} : structure.schedule;
+        const workloads = _.isEmpty(structure) ? {} : structure.workloads;
+
+        setSchedule(schedule);
 
         maasContext.updateCurrentShift(response.data.id);
-        maasContext.setEmployeesAvailabilities(structure.workloads);
+        maasContext.setEmployeesAvailabilities(workloads);
 
       } else {
         setSchedule(null);

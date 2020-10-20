@@ -38,7 +38,7 @@ export default function EmployeeList() {
 
               <div className="employee-row">
                 <span className='employee'>Sin asignar</span>
-                <span className="availability">{availabilities && availabilities[null] ? availabilities[null] : '-'}</span>
+                <span className="availability">{availabilities && availabilities[""] ? availabilities[""] : '-'}</span>
               </div>
             </Fragment>
           </div>
