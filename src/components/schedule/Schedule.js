@@ -53,11 +53,14 @@ export default function Schedule() {
       }
 
       {
-        !loading && _.isEmpty(schedule) &&
+        !loading && !maasContext.editModeOn && _.isEmpty(schedule) &&
         <div className="text-center">
           <h1>
             No hay turnos confirmados
           </h1>
+          <p>
+            Edita la disponibilidad de tus empleados para poder generar un horario.
+          </p>
         </div>
       }
 

@@ -31,7 +31,7 @@ export default function EmployeeList() {
 
                   return <div key={index} className="employee-row">
                     <span className={`employee employee-${employee.id}`}>{employee.name}</span>
-                    <span className="availability">{availability ? availability : '-'}</span>
+                    <span className="availability">{availability ? availability : '0'}</span>
                   </div>
                 })
               }

@@ -24,6 +24,7 @@ export default function WeekSelector() {
     });
 
     maasContext.updateWeek(selectedWeek);
+    maasContext.setEmployeesAvailabilities({});
   }
 
   return (

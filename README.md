@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# README
 
-## Available Scripts
+## Dependencies
 
-In the project directory, you can run:
+* App developed using Node version 12.
 
-### `yarn start`
+* Run `yarn install` to install application dependencies.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Run `yarn start` to start the app on http://localhost:3001. The start script is configured to launch the app on that port, not further configuration needed.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Notes
 
-### `yarn test`
+The application is mainly composed of the following 3 components.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 1. Menu
 
-### `yarn build`
+This section shows the information about the Services, Employees, and Weeks registered in the API. This information is gathered requesting information form the following API endpoints respectively:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Employees: `/api/v1/employees`
+- Weeks: `/api/v1/weeks`
+- Services: `/api/v1/services`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Note: The information shown on the `employees` table, regarding the number of hours an employee will work on a given week is calculated dynamically. No endpoint request related to this information.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 2. Navbar
 
-### `yarn eject`
+The main component of this section is the _Edit_ button on its rightmost side. Clicking this button changes the content displayed on the third main component of the app, the Schedule.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 3. Schedule
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This component changes its content according to the value of a global state called `editModeOn`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+###### `editModeOn === false`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Shows the confirmed shifts for a given Service, on a particular Week. This information is gathered requesting information from the `/api/v1/monitoring_shifts` API endpoint, giving the Week and Service IDs.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+###### `editModeOn === true`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Shows the employee availabilities for a given Service, on a particular Week. This information is gathered requesting information from the `/api/v1/monitoring_shifts/:id/availabilities` API endpoint, giving the Monitoring Shift ID. The employee availabilities displayed on this view are editable. Every time one of the checkboxes is clicked, a PUT request is sent to the `/api/v1/monitoring_shifts/:id/availabilities` API's endpoint, to update that employee's availability.
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Note: Once the availabilities update is complete, a PUT request is sent to the `/api/v1/monitoring_shifts` to re-generate the confirmed shifts for that Week-Service pair.

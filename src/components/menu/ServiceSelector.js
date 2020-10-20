@@ -24,6 +24,7 @@ export default function ServiceSelector() {
     });
 
     maasContext.updateService(selectedService);
+    maasContext.setEmployeesAvailabilities({});
   }
 
   return (
