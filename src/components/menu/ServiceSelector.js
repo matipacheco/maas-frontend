@@ -33,7 +33,7 @@ export default function ServiceSelector() {
         services ?
         <Fragment>
           <label>
-            Servicio
+            Service
           </label>
           <select className='form-control' onChange={handleOnChange} disabled={editModeOn}>
             {

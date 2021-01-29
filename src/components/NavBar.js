@@ -27,14 +27,14 @@ export default function NavBar() {
         week &&
         <h4>
           {
-            editModeOn ? `Disponibilidad ${week.name}` : "Turnos Confirmados"
+            editModeOn ? `Availability for ${week.name}` : "Confirmed shifts"
           }
         </h4>
       }
 
       <div id="edit-button">
         <div className={`btn btn-${editModeOn ? 'success': 'info'}`} onClick={editModeOn ? handleSubmit : handleClick}>
-          {editModeOn ? 'Confirmar disponibilidad': 'Editar disponibilidad'}
+          {editModeOn ? 'Confirm availability': 'Edit availability'}
         </div>
       </div>
     </nav>

@@ -20,7 +20,7 @@ export default function EmployeeList() {
         employees ?
         <Fragment>
           <label>
-            Empleados
+            Employees
           </label>
 
           <div className="employee-list">
@@ -37,7 +37,7 @@ export default function EmployeeList() {
               }
 
               <div className="employee-row">
-                <span className='employee'>Sin asignar</span>
+                <span className='employee'>Not assigned </span>
                 <span className="availability">{availabilities && availabilities[""] ? availabilities[""] : '-'}</span>
               </div>
             </Fragment>
@@ -45,7 +45,7 @@ export default function EmployeeList() {
 
           <small>
             <p>
-              La tabla muestra la cantidad de <b>cupos confirmados</b> por empleado para dicha semana.
+              This table shows the <b>confirmed shifts</b> for each employee in the given week.
             </p>
           </small>
         </Fragment> :

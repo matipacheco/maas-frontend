@@ -33,7 +33,7 @@ export default function WeekSelector() {
         weeks ?
         <Fragment>
           <label>
-            Semana
+            Week
           </label>
           <select className='form-control' onChange={handleOnChange} disabled={editModeOn}>
             {
@@ -49,13 +49,13 @@ export default function WeekSelector() {
             maasContext.week &&
             <p className="date-range">
               <small>
-                del
+                from
               </small>
               &nbsp;
               <b>{ maasContext.week.start_date }</b>
               &nbsp;
               <small>
-                hasta
+                to
               </small>
               &nbsp;
               <b>{ maasContext.week.end_date }</b>
